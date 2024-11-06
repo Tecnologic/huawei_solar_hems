@@ -1,5 +1,5 @@
 type: gauge
-entity: sensor.inverter_input_power
+entity: sensor.inverter_eingangsleistung
 name: Solar
 min: 0
 max: 9000

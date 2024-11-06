@@ -29,7 +29,7 @@
 #
 sun2:
   - unique_id: hems
-    observer_elevation: 10
+    observer_elevation: 2
 #    sensors:
 #      - unique_id: pv_excess_start_at_elevation
 #        time_at_elevation: 15

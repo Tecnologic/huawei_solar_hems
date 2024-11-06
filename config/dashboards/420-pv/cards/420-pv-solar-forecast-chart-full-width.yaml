@@ -30,7 +30,7 @@ series:
       func: avg
       duration: 5m
   # HUAWEI Solar Integration
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.batteries_batterieladung
     name: Bat-SoC
     float_precision: 0
     type: line
@@ -61,7 +61,7 @@ series:
         return [new Date(entry.date).getTime(), entry.soc_batt_forecast];
       });
   # Template Sensor
-  - entity: sensor.house_consumption_power
+  - entity: sensor.power_meter_wirkleistung
     name: House
     type: line
     color: MediumAquaMarine
@@ -88,7 +88,7 @@ series:
         return [new Date(entry.date).getTime(), entry.p_load_forecast/1000];
       });
   # HUAWEI Solar Integration
-  - entity: sensor.power_meter_active_power
+  - entity: sensor.power_meter_wirkleistung
     name: Grid
     color: "#488fc2"
     opacity: 0.3
@@ -111,7 +111,7 @@ series:
         return [new Date(entry.date).getTime(), entry.p_grid_forecast/1000*-1];
       });
   # HUAWEI Solar Integration
-  - entity: sensor.inverter_input_power
+  - entity: sensor.inverter_eingangsleistung
     name: Solar
     color: "#ff9800"
     opacity: 0.4

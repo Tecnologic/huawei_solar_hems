@@ -1,8 +1,8 @@
 type: custom:config-template-card
 entities:
-  - sensor.hems_sun_setting
-  - sensor.hems_sun_rising
-  - sensor.hems_sun_solar_noon
+  - sensor.zu_hause_sun_setting
+  - sensor.zu_hause_sun_rising
+  - sensor.zu_hause_sun_solar_noon
 card:
   type: custom:apexcharts-card
   config_templates: pv_solar_forecast_chart
@@ -46,11 +46,11 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_rising'].attributes.yesterday).getTime()}
+        - x: ${new Date(states['sensor.zu_hause_sun_rising'].attributes.yesterday).getTime()}
           label:
             text: >-
               ${"🌙 " + new Date(new
-              Date(states['sensor.hems_sun_rising'].attributes.yesterday).getTime()).toLocaleTimeString([],{hour:'2-digit',
+              Date(states['sensor.zu_hause_sun_rising'].attributes.yesterday).getTime()).toLocaleTimeString([],{hour:'2-digit',
               minute:'2-digit'})}
             borderWidth: 0
             style:
@@ -64,11 +64,11 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_solar_noon'].attributes.yesterday).getTime()}
+        - x: ${new Date(states['sensor.zu_hause_sun_solar_noon'].attributes.yesterday).getTime()}
           label:
             text: >-
               ${"☀️ " + new Date(new
-              Date(states['sensor.hems_sun_solar_noon'].attributes.yesterday).getTime()).toLocaleTimeString([],{hour:'2-digit',
+              Date(states['sensor.zu_hause_sun_solar_noon'].attributes.yesterday).getTime()).toLocaleTimeString([],{hour:'2-digit',
               minute:'2-digit'})}
             borderWidth: 0
             style:
@@ -82,11 +82,11 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_setting'].attributes.yesterday).getTime()}
+        - x: ${new Date(states['sensor.zu_hause_sun_setting'].attributes.yesterday).getTime()}
           label:
             text: >-
               ${"☼ " + new Date(new
-              Date(states['sensor.hems_sun_setting'].attributes.yesterday).getTime()).toLocaleTimeString([],{hour:'2-digit',
+              Date(states['sensor.zu_hause_sun_setting'].attributes.yesterday).getTime()).toLocaleTimeString([],{hour:'2-digit',
               minute:'2-digit'})}
             borderWidth: 0
             style:
@@ -101,11 +101,11 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_rising'].attributes.today).getTime()}
+        - x: ${new Date(states['sensor.zu_hause_sun_rising'].attributes.today).getTime()}
           label:
             text: >-
               ${"🌙 " + new Date(new
-              Date(states['sensor.hems_sun_rising'].attributes.today).getTime()).toLocaleTimeString([],{hour:'2-digit',
+              Date(states['sensor.zu_hause_sun_rising'].attributes.today).getTime()).toLocaleTimeString([],{hour:'2-digit',
               minute:'2-digit'})}
             borderWidth: 0
             style:
@@ -119,11 +119,11 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_solar_noon'].attributes.today).getTime()}
+        - x: ${new Date(states['sensor.zu_hause_sun_solar_noon'].attributes.today).getTime()}
           label:
             text: >-
               ${"☀️ " + new Date(new
-              Date(states['sensor.hems_sun_solar_noon'].attributes.today).getTime()).toLocaleTimeString([],{hour:'2-digit',
+              Date(states['sensor.zu_hause_sun_solar_noon'].attributes.today).getTime()).toLocaleTimeString([],{hour:'2-digit',
               minute:'2-digit'})}
             borderWidth: 0
             style:
@@ -139,11 +139,11 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_setting'].attributes.today).getTime()}
+        - x: ${new Date(states['sensor.zu_hause_sun_setting'].attributes.today).getTime()}
           label:
             text: >-
               ${"☼ " + new Date(new
-              Date(states['sensor.hems_sun_setting'].attributes.today).getTime()).toLocaleTimeString([],{hour:'2-digit',
+              Date(states['sensor.zu_hause_sun_setting'].attributes.today).getTime()).toLocaleTimeString([],{hour:'2-digit',
               minute:'2-digit'})}
             borderWidth: 0
             style:
@@ -158,11 +158,11 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_rising'].attributes.tomorrow).getTime()}
+        - x: ${new Date(states['sensor.zu_hause_sun_rising'].attributes.tomorrow).getTime()}
           label:
             text: >-
               ${"🌙 " + new Date(new
-              Date(states['sensor.hems_sun_rising'].attributes.tomorrow).getTime()).toLocaleTimeString([],{hour:'2-digit',
+              Date(states['sensor.zu_hause_sun_rising'].attributes.tomorrow).getTime()).toLocaleTimeString([],{hour:'2-digit',
               minute:'2-digit'})}
             borderWidth: 0
             style:
@@ -176,11 +176,11 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_solar_noon'].attributes.tomorrow).getTime()}
+        - x: ${new Date(states['sensor.zu_hause_sun_solar_noon'].attributes.tomorrow).getTime()}
           label:
             text: >-
               ${"☀️ " + new Date(new
-              Date(states['sensor.hems_sun_solar_noon'].attributes.today).getTime()).toLocaleTimeString([],{hour:'2-digit',
+              Date(states['sensor.zu_hause_sun_solar_noon'].attributes.today).getTime()).toLocaleTimeString([],{hour:'2-digit',
               minute:'2-digit'})}
             borderWidth: 0
             style:
@@ -203,7 +203,7 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_rising'].attributes.tomorrow).getTime()+86400000}
+        - x: ${new Date(states['sensor.zu_hause_sun_rising'].attributes.tomorrow).getTime()+86400000}
           label:
             text: >-
               ${"🌙 "}
@@ -217,7 +217,7 @@ card:
             borderWidth: 0
             style:
               background: "#0000"
-        - x: ${new Date(states['sensor.hems_sun_solar_noon'].attributes.tomorrow).getTime()+86400000}
+        - x: ${new Date(states['sensor.zu_hause_sun_solar_noon'].attributes.tomorrow).getTime()+86400000}
           label:
             text: >-
               ${"☀️ "}
@@ -241,7 +241,7 @@ card:
     yaxis_id: kW_2
   series:
     # HUAWEI Solar Integration
-    - entity: sensor.batteries_state_of_capacity
+    - entity: sensor.batteries_batterieladung
       name: Bat-SoC
       float_precision: 0
       type: line
@@ -272,7 +272,7 @@ card:
           return [new Date(entry.date).getTime(), entry.soc_batt_forecast];
         });
     # Template Sensor
-    - entity: sensor.house_consumption_power
+    - entity: sensor.power_meter_wirkleistung
       name: House
       type: line
       color: MediumAquaMarine
@@ -299,7 +299,7 @@ card:
           return [new Date(entry.date).getTime(), entry.p_load_forecast/1000];
         });
     # HUAWEI Solar Integration
-    - entity: sensor.power_meter_active_power
+    - entity: sensor.power_meter_wirkleistung
       name: Grid
       color: "#488fc2"
       opacity: 0.3
@@ -322,7 +322,7 @@ card:
           return [new Date(entry.date).getTime(), entry.p_grid_forecast/1000*-1];
         });
     # HUAWEI Solar Integration
-    - entity: sensor.inverter_input_power
+    - entity: sensor.inverter_eingangsleistung
       name: Solar
       color: "#ff9800"
       opacity: 0.4

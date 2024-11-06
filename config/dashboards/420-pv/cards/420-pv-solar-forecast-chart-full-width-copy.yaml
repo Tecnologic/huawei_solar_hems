@@ -39,7 +39,7 @@ series:
     group_by:
       func: avg
       duration: 5m
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.batteries_batterieladung
     name: Bat-SoC
     float_precision: 0
     type: line
@@ -53,7 +53,7 @@ series:
     group_by:
       func: avg
       duration: 5m
-  - entity: sensor.house_consumption_power
+  - entity: sensor.power_meter_wirkleistung
     name: House Power
     type: line
     color: MediumAquaMarine

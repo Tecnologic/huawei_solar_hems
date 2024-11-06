@@ -2,7 +2,7 @@ type: picture-elements
 title: Huawei Sun2000-6KTL-M1 (High Current Version)
 image: /local/images/huawei-solar/sun2000-luna2000-power-energy-flows.png
 elements:
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.batteries_batterieladung
     style:
       left: 17%
       top: 9%
@@ -12,12 +12,12 @@ elements:
       left: 55.3%
       top: 9%
     type: state-label
-  - entity: sensor.batteries_total_charge
+  - entity: sensor.batteries_gesamtladung
     style:
       left: 15.7%
       top: 20.8%
     type: state-label
-  - entity: sensor.batteries_day_charge
+  - entity: sensor.batteries_tagesladung
     style:
       left: 29.7%
       top: 20.7%
@@ -27,7 +27,7 @@ elements:
       left: 52.6%
       top: 20.8%
     type: state-label
-  - entity: sensor.power_meter_consumption
+  - entity: sensor.power_meter_verbrauch
     prefix: "T: "
     style:
       left: 76.2%
@@ -39,7 +39,7 @@ elements:
       left: 76.2%
       top: 24.6%
     type: state-label
-  - entity: sensor.power_meter_exported
+  - entity: sensor.power_meter_exportierte_energie
     prefix: "T: "
     style:
       left: 94.7%
@@ -51,12 +51,12 @@ elements:
       left: 94.7%
       top: 24.6%
     type: state-label
-  - entity: sensor.batteries_total_discharge
+  - entity: sensor.batteries_gesamtentladung
     style:
       left: 15.7%
       top: 27%
     type: state-label
-  - entity: sensor.batteries_day_discharge
+  - entity: sensor.batteries_tagesentladung
     style:
       left: 29.7%
       top: 27%
@@ -66,7 +66,7 @@ elements:
       left: 52.6%
       top: 27%
     type: state-label
-  - entity: sensor.power_meter_active_power
+  - entity: sensor.power_meter_wirkleistung
     style:
       left: 91.5%
       top: 32.5%
@@ -81,17 +81,17 @@ elements:
       left: 39%
       top: 36.2%
     type: state-label
-  - entity: sensor.inverter_active_power
+  - entity: sensor.inverter_wirkleistung
     style:
       left: 69.5%
       top: 47%
     type: state-label
-  - entity: sensor.inverter_daily_yield
+  - entity: sensor.inverter_tagesertrag
     style:
       left: 59%
       top: 57%
     type: state-label
-  - entity: sensor.inverter_total_yield
+  - entity: sensor.inverter_gesamtenergieertrag
     style:
       left: 76.3%
       top: 57%
@@ -101,12 +101,12 @@ elements:
       left: 44%
       top: 60%
     type: state-label
-  - entity: sensor.inverter_input_power
+  - entity: sensor.inverter_eingangsleistung
     style:
       left: 14.8%
       top: 54.4%
     type: state-label
-  - entity: sensor.house_consumption_power
+  - entity: sensor.power_meter_wirkleistung
     style:
       left: 96.5%
       top: 72.8%

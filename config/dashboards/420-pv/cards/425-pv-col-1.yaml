@@ -92,7 +92,7 @@ elements:
       left: 52%
       top: 3.8%
     entities:
-      - entity: sensor.power_meter_active_power
+      - entity: sensor.power_meter_wirkleistung
         name: Out
         min: "0"
         max: "7800"
@@ -105,7 +105,7 @@ elements:
             from: -7800
             to: -1
             hide: true
-      - entity: sensor.power_meter_active_power
+      - entity: sensor.power_meter_wirkleistung
         name: In
         min: "0"
         max: "-7800"
@@ -133,7 +133,7 @@ elements:
       left: 54%
       top: 14%
     type: state-label
-  - entity: sensor.power_meter_exported
+  - entity: sensor.power_meter_exportierte_energie
     prefix: "T: "
     style:
       left: 80.5%
@@ -145,7 +145,7 @@ elements:
       left: 93%
       top: 0%
     type: state-label
-  - entity: sensor.power_meter_consumption
+  - entity: sensor.power_meter_verbrauch
     prefix: "T: "
     style:
       left: 80.5%
@@ -163,7 +163,7 @@ elements:
       left: 52%
       top: 37.6%
     entities:
-      - entity: sensor.house_consumption_power
+      - entity: sensor.power_meter_wirkleistung
         name: Load
         min: "0"
         max: "7800"
@@ -188,13 +188,13 @@ elements:
       left: 93%
       top: 37.6%
     type: state-label
-  - entity: sensor.inverter_total_yield
+  - entity: sensor.inverter_gesamtenergieertrag
     prefix: "T: "
     style:
       left: 32%
       top: 41%
     type: state-label
-  - entity: sensor.inverter_daily_yield
+  - entity: sensor.inverter_tagesertrag
     prefix: "D: "
     style:
       left: 18%
@@ -206,7 +206,7 @@ elements:
       left: 39.6%
       top: 48.3%
     entities:
-      - entity: sensor.inverter_active_power
+      - entity: sensor.inverter_wirkleistung
         name: Out
         min: "0"
         max: "7800"
@@ -219,7 +219,7 @@ elements:
             from: -7800
             to: 0
             hide: false
-  - entity: sensor.batteries_total_discharge
+  - entity: sensor.batteries_gesamtentladung
     prefix: "T: "
     style:
       left: 80.5%
@@ -231,7 +231,7 @@ elements:
       left: 93%
       top: 48%
     type: state-label
-  - entity: sensor.batteries_day_discharge
+  - entity: sensor.batteries_tagesentladung
     prefix: "D: "
     style:
       left: 93%
@@ -249,7 +249,7 @@ elements:
       left: 92%
       top: 56.5%
     entities:
-      - entity: sensor.batteries_state_of_capacity
+      - entity: sensor.batteries_batterieladung
         name: Capacity
         min: "0"
         max: "100"
@@ -268,13 +268,13 @@ elements:
       left: 94%
       top: 62%
     type: state-label
-  - entity: sensor.batteries_total_charge
+  - entity: sensor.batteries_gesamtladung
     prefix: "T: "
     style:
       left: 80.5%
       top: 65%
     type: state-label
-  - entity: sensor.batteries_day_charge
+  - entity: sensor.batteries_tagesladung
     prefix: "D: "
     style:
       left: 93%
@@ -380,7 +380,7 @@ elements:
       left: 39.6%
       top: 67.8%
     entities:
-      - entity: sensor.inverter_input_power
+      - entity: sensor.inverter_eingangsleistung
         name: In
         min: "0"
         max: "9000"
@@ -436,7 +436,7 @@ elements:
       left: 62%
       top: 83%
     type: state-label
-  - entity: sensor.inverter_pv_1_current
+  - entity: sensor.inverter_pv_1_strom
     style:
       left: 70%
       top: 83%
@@ -470,12 +470,12 @@ elements:
             from: 0
             to: 4500
             hide: false
-  - entity: sensor.inverter_pv_2_voltage
+  - entity: sensor.inverter_pv_2_spannung
     style:
       left: 62%
       top: 94.5%
     type: state-label
-  - entity: sensor.inverter_pv_2_current
+  - entity: sensor.inverter_pv_2_strom
     style:
       left: 70%
       top: 94.5%

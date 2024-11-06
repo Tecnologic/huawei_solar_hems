@@ -517,7 +517,7 @@ rest_command:
       {% set prediction_horizon = states('sensor.emhass_prediction_horizon')|int(0) %}
       {
         "pv_power_forecast": {{
-          ([states('sensor.inverter_input_power')|float(0)] +
+          ([states('sensor.inverter_eingangsleistung')|float(0)] +
           (state_attr('sensor.emhass_forecast_data', 'data')|map(attribute='p_pv_forecast')|list)[1:48]
           )| tojson
         }},
@@ -527,7 +527,7 @@ rest_command:
           )| tojson 
         }},
         "prediction_horizon": {{prediction_horizon}},
-        "soc_init": {{states('sensor.batteries_state_of_capacity')|float(0)/100}},
+        "soc_init": {{states('sensor.batteries_batterieladung')|float(0)/100}},
         "soc_final": 1.0,
         "def_total_hours": [0,0],
         "alpha": 1,
@@ -543,7 +543,7 @@ rest_command:
       {% set prediction_horizon = states('sensor.emhass_prediction_horizon')|int(0) %}
       {
         "pv_power_forecast": {{
-          ([states('sensor.inverter_input_power')|float(0)] +
+          ([states('sensor.inverter_eingangsleistung')|float(0)] +
           (state_attr('sensor.emhass_forecast_data', 'data')|map(attribute='p_pv_forecast')|list)[1:-1]
           )|tojson
         }},
@@ -553,7 +553,7 @@ rest_command:
           )|tojson 
         }},
         "prediction_horizon": {{prediction_horizon}},
-        "soc_init": {{states('sensor.batteries_state_of_capacity')|float(0)/100}},
+        "soc_init": {{states('sensor.batteries_batterieladung')|float(0)/100}},
         "soc_final": 1.0,
         "def_total_hours": [0,0],
         "alpha": 1,
@@ -570,7 +570,7 @@ rest_command:
       {
         "days_to_retrieve": 7,
         "model_type":"load_forecast",
-        "var_model":"sensor.house_consumption_power",
+        "var_model":"sensor.power_meter_wirkleistung",
         "num_lags": 96,
         "split_date_delta": "48h",
         "perform_backtest": true
@@ -595,7 +595,7 @@ rest_command:
     timeout: 30
     payload: >-
       {
-        "var_model":"sensor.house_consumption_power"
+        "var_model":"sensor.power_meter_wirkleistung"
       }
 
 #

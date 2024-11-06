@@ -10,10 +10,10 @@ all_series_config:
   yaxis_id: watts
 graph_span: 6h
 series:
-  - entity: sensor.inverter_input_power
+  - entity: sensor.inverter_eingangsleistung
     name: Inv-In
     color: "#ff9800"
-  - entity: sensor.inverter_active_power
+  - entity: sensor.inverter_wirkleistung
     name: Inv-Out
     color: yellow
   - entity: sensor.batteries_charge_power
@@ -22,11 +22,11 @@ series:
   - entity: sensor.batteries_discharge_power
     name: Bat-Out
     color: "#4db6ac"
-  - entity: sensor.power_meter_active_power
+  - entity: sensor.power_meter_wirkleistung
     name: Grid-In
     transform: return -Math.min(0,x);
     color: "#488fc2"
-  - entity: sensor.power_meter_active_power
+  - entity: sensor.power_meter_wirkleistung
     name: Grid-Out
     transform: return Math.max(0,x);
     color: "#a280db"

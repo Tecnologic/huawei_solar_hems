@@ -6,7 +6,7 @@ series:
   - entity: sensor.inverter_yield_self_use_total
     name: Total
     transform: >
-      let inv_yield = hass.states['sensor.inverter_total_yield'].state;
+      let inv_yield = hass.states['sensor.inverter_gesamtenergieertrag'].state;
       let inv_yield_self_use = hass.states['sensor.inverter_yield_self_use_total'].state;
       return(inv_yield_self_use / inv_yield * 100);
   - entity: sensor.inverter_yield_self_use_yearly
@@ -30,7 +30,7 @@ series:
   - entity: sensor.inverter_yield_self_use_daily
     name: Today
     transform: >
-      let inv_yield = hass.states['sensor.inverter_daily_yield'].state;
+      let inv_yield = hass.states['sensor.inverter_tagesertrag'].state;
       let inv_yield_self_use = hass.states['sensor.inverter_yield_self_use_daily'].state;
       return(inv_yield_self_use / inv_yield * 100);
 card_mod:

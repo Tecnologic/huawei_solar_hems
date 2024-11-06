@@ -40,8 +40,8 @@ template:
         at: "00:00:00"
       - platform: state
         entity_id:
-          - sensor.batteries_day_charge
-          - sensor.batteries_day_discharge
+          - sensor.batteries_tagesladung
+          - sensor.batteries_tagesentladung
         not_from:
           - "unknown"
           - "unavailable"

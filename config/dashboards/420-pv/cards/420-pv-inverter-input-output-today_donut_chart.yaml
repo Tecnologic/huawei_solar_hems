@@ -8,15 +8,15 @@ series:
     color: "#ff9800"
     show:
       in_chart: false
-  - entity: sensor.batteries_day_discharge
+  - entity: sensor.batteries_tagesentladung
     name: Bat-Out
     color: "#ff9800"
     show:
       in_chart: false
-  - entity: sensor.batteries_day_charge
+  - entity: sensor.batteries_tagesladung
     name: Bat-In
     color: "#f06292"
-  - entity: sensor.inverter_daily_yield
+  - entity: sensor.inverter_tagesertrag
     name: Inv-Out
     color: MediumAquaMarine
   - entity: sensor.inverter_loss_daily

@@ -1,8 +1,8 @@
 logging_level: INFO
 data_path: /share/
 costfun: self-consumption
-sensor_power_photovoltaics: sensor.inverter_input_power
-sensor_power_load_no_var_loads: sensor.house_consumption_power
+sensor_power_photovoltaics: sensor.inverter_eingangsleistung
+sensor_power_load_no_var_loads: sensor.power_meter_wirkleistung
 set_total_pv_sell: false
 set_nocharge_from_grid: false
 set_nodischarge_to_grid: true

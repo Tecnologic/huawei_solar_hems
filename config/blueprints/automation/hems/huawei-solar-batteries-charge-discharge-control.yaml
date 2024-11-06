@@ -115,27 +115,27 @@ blueprint:
           description: >-
             Rated charge power sensor of PV system's Batteries device.
             <br>
-            <br>Default: sensor.batteries_maximum_charge_power
+            <br>Default: sensor.batteries_maximale_ladeleistung
           selector:
             entity:
               multiple: false
               filter:
                 - domain: sensor
                   device_class: power
-          default: sensor.batteries_maximum_charge_power
+          default: sensor.batteries_maximale_ladeleistung
         sensor_batteries_maximum_discharge_power:
           name: Huawei Solar Batteries Rated discharge power sensor
           description: >-
             Rated discharge power sensor of PV system's Batteries device.
             <br>
-            <br>Default: sensor.batteries_maximum_discharge_power
+            <br>Default: sensor.batteries_maximale_entladeleistung
           selector:
             entity:
               multiple: false
               filter:
                 - domain: sensor
                   device_class: power
-          default: sensor.batteries_maximum_discharge_power
+          default: sensor.batteries_maximale_entladeleistung
         sensor_batteries_forcible_charge:
           name: Huawei Solar Batteries Forcible charge sensor
           description: >-
@@ -191,7 +191,7 @@ blueprint:
 #
 id: 'huawei_solar_batteries_charge_discharge_control'
 alias: 'Huawei Solar - Batteries Charge-Discharge Control'
-description: 'Batteries Charge-Discharge Management for Huawei LUNA2000-5/10/15-S0 connected to Huawei SUN2000-3/4/5/6/8/10KTL-M1 Inverter'
+description: 'Batteries Charge-Discharge Management for Huawei LUNA2000 connected to Huawei SUN2000 Inverter'
 trigger:
 - platform: time_pattern
   minutes: !input trigger_frequency

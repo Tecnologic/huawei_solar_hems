@@ -23,7 +23,7 @@
 #
 # ########## Entities ##########
 #
-# - sensor.house_consumption_power
+# - sensor.power_meter_wirkleistung
 # - sensor.batteries_active_power
 # - sensor.batteries_charge_power
 # - sensor.batteries_discharge_power
@@ -38,20 +38,20 @@ template:
   # custom:power-flow-card-plus
   # https://github.com/flixlix/power-flow-card-plus
   #
-  # solar               : sensor.inverter_input_power
+  # solar               : sensor.inverter_eingangsleistung
   # battery             : sensor.batteries_charge_discharge_power_with_loss
-  # grid                : sensor.power_meter_active_power
-  # house               : sensor.house_consumption_power
-  # load (FusionSolar)  : sensor.house_consumption_power
+  # grid                : sensor.power_meter_wirkleistung
+  # house               : sensor.power_meter_wirkleistung
+  # load (FusionSolar)  : sensor.power_meter_wirkleistung
   #
   # Real house load
   #
   - trigger:
       - platform: state
         entity_id:
-          - sensor.inverter_input_power
-          - sensor.inverter_active_power
-          - sensor.power_meter_active_power
+          - sensor.inverter_eingangsleistung
+          - sensor.inverter_wirkleistung
+          - sensor.power_meter_wirkleistung
         not_from:
           - "unknown"
           - "unavailable"

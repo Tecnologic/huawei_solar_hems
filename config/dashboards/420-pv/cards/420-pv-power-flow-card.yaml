@@ -10,15 +10,15 @@ display_zero_lines: true
 use_new_flow_rate_model: true
 entities:
   home:
-    entity: sensor.house_consumption_power
+    entity: sensor.power_meter_wirkleistung
     override_state: true
   solar:
-    entity: sensor.inverter_input_power
+    entity: sensor.inverter_eingangsleistung
   battery:
     name: Batteries
     entity: sensor.batteries_active_power
     invert_state: true
-    state_of_charge: sensor.batteries_state_of_capacity
+    state_of_charge: sensor.batteries_batterieladung
     color_circle: true
   individual:
     - entity: sensor.washing_power
@@ -32,7 +32,7 @@ entities:
       display_zero: true
   #      color: "#00CC44"
   grid:
-    entity: sensor.power_meter_active_power
+    entity: sensor.power_meter_wirkleistung
     invert_state: true
   fossil_fuel_percentage:
     entity: sensor.co2_signal_grid_fossil_fuel_percentage

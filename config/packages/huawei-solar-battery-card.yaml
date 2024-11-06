@@ -59,7 +59,7 @@ template:
   - trigger:
       - platform: state
         entity_id:
-          - sensor.batteries_state_of_capacity
+          - sensor.batteries_batterieladung
         not_from:
           - "unknown"
           - "unavailable"

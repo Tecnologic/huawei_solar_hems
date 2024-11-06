@@ -15,12 +15,12 @@ elements:
       left: 48%
       top: 17%
     type: state-label
-  - entity: sensor.inverter_input_power
+  - entity: sensor.inverter_eingangsleistung
     style:
       left: 30%
       top: 29.5%
     type: state-label
-  - entity: sensor.inverter_input_power
+  - entity: sensor.inverter_eingangsleistung
     style:
       left: 44%
       top: 28%
@@ -40,17 +40,17 @@ elements:
       left: 48%
       top: 49%
     type: state-label
-  - entity: sensor.inverter_active_power
+  - entity: sensor.inverter_wirkleistung
     style:
       left: 78%
       top: 36%
     type: state-label
-  - entity: sensor.power_meter_active_power
+  - entity: sensor.power_meter_wirkleistung
     style:
       left: 81%
       top: 28%
     type: state-label
-  - entity: sensor.house_consumption_power
+  - entity: sensor.power_meter_wirkleistung
     style:
       left: 90%
       top: 51.5%
@@ -60,19 +60,19 @@ elements:
       left: 25%
       top: 61%
     type: state-label
-  - entity: sensor.batteries_day_charge
+  - entity: sensor.batteries_tagesladung
     prefix: "D: "
     style:
       left: 25%
       top: 63%
     type: state-label
-  - entity: sensor.batteries_total_charge
+  - entity: sensor.batteries_gesamtladung
     prefix: "T: "
     style:
       left: 34%
       top: 63%
     type: state-label
-  - entity: sensor.batteries_day_discharge
+  - entity: sensor.batteries_tagesentladung
     prefix: "D: "
     style:
       left: 25%
@@ -83,13 +83,13 @@ elements:
       left: 25%
       top: 74%
     type: state-label
-  - entity: sensor.batteries_total_discharge
+  - entity: sensor.batteries_gesamtentladung
     prefix: "T: "
     style:
       left: 34%
       top: 72%
     type: state-label
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.batteries_batterieladung
     style:
       left: 16%
       top: 75%
@@ -123,25 +123,25 @@ elements:
       left: 57%
       top: 17%
     type: state-label
-  - entity: sensor.power_meter_exported
+  - entity: sensor.power_meter_exportierte_energie
     prefix: "T: "
     style:
       left: 65%
       top: 13.5%
     type: state-label
-  - entity: sensor.power_meter_consumption
+  - entity: sensor.power_meter_verbrauch
     prefix: "T: "
     style:
       left: 65%
       top: 17%
     type: state-label
-  - entity: sensor.inverter_total_yield
+  - entity: sensor.inverter_gesamtenergieertrag
     prefix: "T: "
     style:
       left: 76%
       top: 48%
     type: state-label
-  - entity: sensor.inverter_daily_yield
+  - entity: sensor.inverter_tagesertrag
     prefix: "D: "
     style:
       left: 76%

@@ -58,7 +58,7 @@ template:
       - platform: state
         entity_id:
           - sensor.inverter_pv_1_voltage
-          - sensor.inverter_pv_2_voltage
+          - sensor.inverter_pv_2_spannung
         not_from:
           - "unknown"
           - "unavailable"
@@ -311,14 +311,14 @@ utility_meter:
     unique_id: inverter_yield_quarter_hourly
     name: "inverter_yield_quarter_hourly"
     # friendly_name: ' inverter_yield - Energy quarter-hourly'
-    source: sensor.inverter_total_yield
+    source: sensor.inverter_gesamtenergieertrag
     cycle: quarter-hourly
 
   inverter_yield_hourly:
     unique_id: inverter_yield_hourly
     name: "inverter_yield_hourly"
     # friendly_name: ' inverter_yield - Energy hourly'
-    source: sensor.inverter_total_yield
+    source: sensor.inverter_gesamtenergieertrag
     cycle: hourly
 #
 # ########## Endt: Utility Meter Sensors ##########

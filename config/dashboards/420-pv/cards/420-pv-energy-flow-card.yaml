@@ -18,7 +18,7 @@ entities:
     entity:
       consumption: sensor.batteries_day_discharge_with_loss
       production: sensor.batteries_day_charge_with_loss
-    state_of_charge: sensor.batteries_state_of_capacity
+    state_of_charge: sensor.batteries_batterieladung
     color_circle: true
   individual1:
     entity: sensor.heating_energy_daily

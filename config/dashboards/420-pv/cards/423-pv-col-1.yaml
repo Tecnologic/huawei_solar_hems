@@ -8,7 +8,7 @@ entities:
       - entity: switch.inverter_inverter_on_off
         name: Inverter
         entities:
-          - entity: sensor.inverter_active_power
+          - entity: sensor.inverter_wirkleistung
             name: ActivePower
             format: precision0
         type: custom:multiple-entity-row
@@ -19,7 +19,7 @@ entities:
       - entity: sensor.power_meter_meter_status
         name: Power meter
         entities:
-          - entity: sensor.power_meter_active_power
+          - entity: sensor.power_meter_wirkleistung
             name: ActivePower
             format: precision0
         type: custom:multiple-entity-row
@@ -36,7 +36,7 @@ entities:
       - entity: sensor.batteries_status
         name: Batteries
         entities:
-          - entity: sensor.batteries_state_of_capacity
+          - entity: sensor.batteries_batterieladung
             name: SOC
             format: precision0
           - entity: sensor.batteries_charge_discharge_power
@@ -424,10 +424,10 @@ entities:
           - entity: sensor.solcast_pv_forecast_api_update
             name: Next
             format: time
-          - entity: sensor.solcast_pv_forecast_api_limit
+          - entity: sensor.solcast_pv_forecast_max_api_abrufe
             name: Limit
             format: precision0
-          - entity: sensor.solcast_pv_forecast_verwendete_api
+          - entity: sensor.solcast_pv_forecast_verwendete_api_abrufe
             name: Today
             format: precision0
         type: custom:multiple-entity-row
@@ -436,20 +436,20 @@ entities:
         toggle: false
         style: |
           :host {
-            {% if states('sensor.solcast_pv_forecast_verwendete_api')|float(0) > 0 %}
+            {% if states('sensor.solcast_pv_forecast_verwendete_api_abrufe')|float(0) > 0 %}
               --paper-item-icon-color: #fdd835;
             {% endif %}
           }
       - entity: sensor.hems_sun_deconz_daylight
         name: Sun phase for today
         entities:
-          - entity: sensor.hems_sun_rising
+          - entity: sensor.zu_hause_sun_rising
             name: Rising
             format: time
           - entity: sensor.hems_sun_pv_excess_start
             name: PVExcessStart
             format: time
-          - entity: sensor.hems_sun_solar_noon
+          - entity: sensor.zu_hause_sun_solar_noon
             name: SolarNoon
             format: time
           - entity: sensor.hems_sun_prediction_end
@@ -458,7 +458,7 @@ entities:
           - entity: sensor.hems_sun_pv_excess_end
             name: PVExcessEnd
             format: time
-          - entity: sensor.hems_sun_setting
+          - entity: sensor.zu_hause_sun_setting
             name: Setting
             format: time
         type: custom:multiple-entity-row
@@ -614,7 +614,7 @@ entities:
             format: precision2
           - entity: number.batteries_end_of_charge_soc
             name: Max
-          - entity: sensor.batteries_state_of_capacity
+          - entity: sensor.batteries_batterieladung
             name: State
           - entity: sensor.batteries_state_of_energy
             name: State
@@ -642,7 +642,7 @@ entities:
             name: BackupPower
           - entity: number.batteries_end_of_discharge_soc
             name: Min
-          - entity: sensor.batteries_state_of_capacity
+          - entity: sensor.batteries_batterieladung
             name: State
           - entity: sensor.batteries_state_of_energy
             name: State
@@ -870,7 +870,7 @@ entities:
           - entity: sensor.epex_spot_data_quantile
             name: Quantile
             format: precision4
-          - entity: sensor.power_meter_active_power
+          - entity: sensor.power_meter_wirkleistung
             name: Grid
             format: precision0
         type: custom:multiple-entity-row

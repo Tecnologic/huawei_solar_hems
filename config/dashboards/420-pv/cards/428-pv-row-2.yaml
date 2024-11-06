@@ -15,7 +15,7 @@ all_series_config:
     fill: last
 graph_span: 24h
 series:
-  - entity: sensor.inverter_daily_yield
+  - entity: sensor.inverter_tagesertrag
     name: Inv-Out
     color: grey
   - entity: sensor.solar_yield_daily

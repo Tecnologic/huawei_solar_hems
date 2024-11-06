@@ -1,5 +1,5 @@
 type: gauge
-entity: sensor.batteries_state_of_capacity
+entity: sensor.batteries_batterieladung
 name: Batteries
 min: 0
 max: 100

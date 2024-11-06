@@ -102,24 +102,24 @@ grid:
 entities:
   use_timer_248: null
   priority_load_243: null
-  day_battery_charge_70: sensor.batteries_day_charge
-  day_battery_discharge_71: sensor.batteries_day_discharge
+  day_battery_charge_70: sensor.batteries_tagesladung
+  day_battery_discharge_71: sensor.batteries_tagesentladung
   day_load_energy_84: sensor.house_consumption_energy_daily
 
   day_grid_import_76: sensor.hs_grid_imported_daily
   day_grid_export_77: sensor.hs_grid_exported_daily
-  day_pv_energy_108: sensor.inverter_daily_yield
+  day_pv_energy_108: sensor.inverter_tagesertrag
   day_aux_energy: sensor.sunsynk_card_aux_energy_daily
 
   inverter_voltage_154: sensor.power_meter_phase_a_voltage
   inverter_voltage_L2: sensor.power_meter_phase_b_voltage
   inverter_voltage_L3: sensor.power_meter_phase_c_voltage
   load_frequency_192: sensor.power_meter_frequency
-  grid_power_169: sensor.house_consumption_power
+  grid_power_169: sensor.power_meter_wirkleistung
   inverter_current_164: sensor.inverter_phase_a_current
   inverter_current_L2: sensor.inverter_phase_b_current
   inverter_current_L3: sensor.inverter_phase_c_current
-  inverter_power_175: sensor.inverter_active_power
+  inverter_power_175: sensor.inverter_wirkleistung
   inverter_status_59: sensor.inverter_inverter_state
   radiator_temp_91: null
   dc_transformer_temp_90: sensor.inverter_internal_temperature
@@ -127,15 +127,15 @@ entities:
   pv2_power_187: sensor.inverter_pv_2_power
   pv3_power_188: null
   pv4_power_189: null
-  pv_total: sensor.inverter_input_power
+  pv_total: sensor.inverter_eingangsleistung
   environment_temp: null
   remaining_solar: sensor.solcast_forecast_remaining_today_every_minute
   pv1_voltage_109: sensor.inverter_pv_1_voltage
-  pv1_current_110: sensor.inverter_pv_1_current
-  pv2_voltage_111: sensor.inverter_pv_2_voltage
-  pv2_current_112: sensor.inverter_pv_2_current
+  pv1_current_110: sensor.inverter_pv_1_strom
+  pv2_voltage_111: sensor.inverter_pv_2_spannung
+  pv2_current_112: sensor.inverter_pv_2_strom
   battery_voltage_183: sensor.batteries_bus_voltage
-  battery_soc_184: sensor.batteries_state_of_capacity
+  battery_soc_184: sensor.batteries_batterieladung
   battery_power_190: sensor.batteries_charge_discharge_power_with_loss
   battery_current_191: sensor.batteries_bus_current
   battery_temp_182: null
@@ -157,7 +157,7 @@ entities:
   grid_ct_power_172: sensor.power_meter_phase_a_active_power
   grid_ct_power_L2: sensor.power_meter_phase_b_active_power
   grid_ct_power_L3: sensor.power_meter_phase_c_active_power
-  grid_ct_power_total: sensor.power_meter_active_power
+  grid_ct_power_total: sensor.power_meter_wirkleistung
   grid_connected_status_194: sensor.inverter_off_grid_status
 
   aux_power_166: sensor.sunsynk_card_aux_active_power

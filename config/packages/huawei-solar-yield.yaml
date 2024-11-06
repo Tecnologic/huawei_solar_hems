@@ -97,7 +97,7 @@ sensor:
   - platform: integration
     name: solar_yield
     unique_id: solar_yield
-    source: sensor.inverter_input_power
+    source: sensor.inverter_eingangsleistung
     unit_prefix: k
     method: left
   #
