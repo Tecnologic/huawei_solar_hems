@@ -1,0 +1,32 @@
+- id: '1691838317764'
+  alias: 'Terrassenlicht Einschalten '
+  description: ''
+  trigger:
+  - type: light
+    platform: device
+    device_id: 1887e146781f6b7f3b887dac226ac04a
+    entity_id: 28a4327866754c314511c3ba29f2a2d2
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: debfaa37870d6405eb0bf56a5983d634
+    entity_id: f69549083b2bbd020ffb0f21a7ccb808
+    domain: light
+  mode: single
+- id: '1691840682618'
+  alias: 'Terrassenlicht Ausschalten '
+  description: ''
+  trigger:
+  - type: no_light
+    platform: device
+    device_id: 1887e146781f6b7f3b887dac226ac04a
+    entity_id: 28a4327866754c314511c3ba29f2a2d2
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_off
+    device_id: debfaa37870d6405eb0bf56a5983d634
+    entity_id: f69549083b2bbd020ffb0f21a7ccb808
+    domain: light
+  mode: single

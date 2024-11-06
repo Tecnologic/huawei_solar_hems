@@ -1,0 +1,64 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+automation: !include automations.yaml
+lovelace: !include ui-lovelace.yaml
+script: !include scripts.yaml
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# https zugriff
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.1.0/24
+
+recorder:
+  purge_keep_days: 14
+  commit_interval: 20
+
+# Example configuration.yaml entry
+mqtt:
+  sensor:
+    - state_topic: "ecu/in"
+      name: "garden.module.0"
+      object_id: "garden.module.0"
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ value_json.p0 }}"
+
+    - state_topic: "ecu/in"
+      name: "garden.module.1"
+      object_id: "garden.module.1"
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ value_json.p1 }}"
+
+    - state_topic: "ecu/in"
+      name: "garden.power"
+      object_id: "garden.power"
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ (value_json.p0)|float(1)|round(1) + (value_json.p1)|float(0)|round(1) }}"
+
+    - state_topic: "ecu/in"
+      name: "garden.energy"
+      object_id: "garden.energy"
+      unit_of_measurement: "Wh"
+      device_class: energy
+      state_class: total_increasing
+      value_template: "{{ value_json.energy }}"
+
+    - state_topic: "ecu/in"
+      name: "garden.inverter.temp"
+      object_id: "garden.inverter.temp"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      state_class: measurement
+      value_template: "{{ value_json.temp }}"
+      # mqtt json template {"inv_serial":"408000190203","temp":"23.4","p0":"0.8","p1":"0.6","energy":"1827.8"}
