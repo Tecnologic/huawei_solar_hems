@@ -1,6 +1,10 @@
 # Loads default set of integrations. Do not remove.
 default_config:
 
+homeassistant:
+  packages:
+    huawei_solar_power: !include packages/huawei_solar_power.yaml
+
 automation: !include automations.yaml
 lovelace: !include ui-lovelace.yaml
 script: !include scripts.yaml

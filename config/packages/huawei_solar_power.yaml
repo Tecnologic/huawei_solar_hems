@@ -1,0 +1,166 @@
+# ########## Huawei Solar Integration - Power flow card ##########
+#
+# homeassistant:
+#   min_version: 2024.10.1
+# domain: template sensor
+#
+# source_url: https://github.com/heinemannj/huawei_solar_hems/blob/main/config/packages/huawei-solar-power-flow-card.yaml
+#
+# repository_name: Huawei Solar HEMS
+# repository_description: Home Assistent (HA) Home Energy Management System (HEMS)
+# repository_url: https://github.com/heinemannj/huawei_solar_hems
+# documentation_url: https://github.com/heinemannj/huawei_solar_hems/wiki
+# author: https://github.com/heinemannj
+#
+# Copyright (c) 2024 Joerg Heinemann
+# All rights reserved.
+#
+# license: https://github.com/heinemannj/huawei_solar_hems/blob/main/LICENSE
+#
+# ########## Setting for Huawei Solar Integration UPDATE_INTERVAL in const.py ##########
+#
+# UPDATE_INTERVAL = timedelta(seconds=3)
+#
+# ########## Entities ##########
+#
+# - sensor.house_consumption_power
+# - sensor.batteries_active_power
+# - sensor.batteries_charge_power
+# - sensor.batteries_discharge_power
+# - sensor.batteries_charge_from_grid_power
+# - sensor.grid_export_power
+# - sensor.grid_import_power
+#
+# ########## Start: Persistent Template Sensors ##########
+#
+template:
+  #
+  # custom:power-flow-card-plus
+  # https://github.com/flixlix/power-flow-card-plus
+  #
+  # solar               : sensor.inverter_input_power
+  # battery             : sensor.batteries_charge_discharge_power_with_loss
+  # grid                : sensor.power_meter_active_power
+  # house               : sensor.house_consumption_power
+  # load (FusionSolar)  : sensor.house_consumption_power
+  #
+  # Real house load
+  #
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.inverter_input_power
+          - sensor.inverter_active_power
+        not_from:
+          - "unknown"
+          - "unavailable"
+          - "none"
+        not_to:
+          - "unknown"
+          - "unavailable"
+          - "none"
+    action:
+      - variables:
+          t: "{{ now().isoformat() }}"
+          inv_in_power: "{{ states('sensor.inverter_input_power')|int(0) }}"
+          garden_power: "{{ states('sensor.garden_power')|int(0) }}"
+          inv_active_power: "{{ states('sensor.inverter_active_power')|int(0) }}"
+          bat_active_power: "{{ (inv_in_power + garden_power - inv_active_power)|int(0) }}"
+          bat_charge_power: "{{ max(0, bat_active_power) }}"
+          bat_discharge_power: "{{ -min(0, bat_active_power) }}"
+          bat_charge_from_grid_power: "{{ -min(0, inv_active_power) }}"
+          grid_active_power: "{{ states('sensor.power_meter_active_power')|int(0) }}"
+          grid_export_power: "{{ max(0, grid_active_power) }}"
+          grid_import_power: "{{ -min(0, grid_active_power) }}"
+          house_power: "{{ inv_active_power + garden_power - grid_active_power }}"
+          house_power_with_correction: >-
+            {% if house_power > 0 %}
+              {{ house_power }}
+            {% else %}
+              {{ 0 }}
+            {% endif %}
+    sensor:
+      #
+      #  Sensor for House power
+      # - Correction to avoid negative load
+      #
+      - name: house_consumption_power
+        unique_id: house_consumption_power
+        #friendly_name: "Haus Verbrauch"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:home-lightning-bolt
+        state: "{{ house_power_with_correction }}"
+      #
+      # Battery Active power
+      #
+      - name: battery_active_power
+        unique_id: battery_active_power
+        #friendly_name: "Battrie Lade/Entladeleistung"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:home-battery
+        state: "{{ bat_active_power }}"
+      #
+      # Battery Charge power
+      #
+      - name: battery_charge_power
+        unique_id: battery_charge_power
+        #friendly_name: "Batterie Ladeleistung"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:home-battery
+        state: "{{ bat_charge_power }}"
+        attributes:
+          last_updated: "{{ t }}"
+      #
+      # Battery Discharge power
+      #
+      - name: battery_discharge_power
+        unique_id: battery_discharge_power
+        #friendly_name: "Batterie Entladeleistung"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:home-battery
+        state: "{{ bat_discharge_power }}"
+        attributes:
+          last_updated: "{{ t }}"
+      #
+      # Sensor that reports the battery charge from grid power
+      #
+      - name: battery_charge_from_grid_power
+        unique_id: battery_charge_from_grid_power
+        #friendly_name: "Batterie Ladeleistung aus dem Netz"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:home-battery
+        state: "{{ bat_charge_from_grid_power }}"
+      #
+      # Sensor that reports the grid export power
+      #
+      - name: grid_export_power
+        unique_id: grid_export_power
+        #friendly_name: "Netz Einspeiseleistung"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:flash
+        state: "{{ grid_export_power }}"
+      #
+      # Sensor that reports the grid import power
+      #
+      - name: grid_import_power
+        unique_id: grid_import_power
+        #friendly_name: "Netz Bezugsleistung"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:flash
+        state: "{{ grid_import_power }}"
+#
+# ########## End: Persistent Template Sensors ##########
