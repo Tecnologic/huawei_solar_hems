@@ -64,16 +64,16 @@ template:
           t: "{{ now().isoformat() }}"
           inv_in_power: "{{ states('sensor.inverter_input_power')|int(0) }}"
           garden_power: "{{ states('sensor.garden_power')|int(0) }}"
-          solar_power: "{{ (inv_in_power + garden_power)|int(0) }}"
+          in_power: "{{ (inv_in_power + garden_power)|int(0) }}"
           inv_active_power: "{{ states('sensor.inverter_active_power')|int(0) }}"
-          bat_active_power: "{{ (solar_power - inv_active_power)|int(0) }}"
+          bat_active_power: "{{ states('sensor.battery_charge_discharge_power')|int(0) }}"
           bat_charge_power: "{{ max(0, bat_active_power) }}"
           bat_discharge_power: "{{ -min(0, bat_active_power) }}"
           bat_charge_from_grid_power: "{{ -min(0, inv_active_power) }}"
           grid_active_power: "{{ states('sensor.power_meter_active_power')|int(0) }}"
           grid_export_power: "{{ max(0, grid_active_power) }}"
           grid_import_power: "{{ -min(0, grid_active_power) }}"
-          house_power: "{{ (inv_active_power - grid_active_power)|int(0) }}"
+          house_power: "{{ (inv_active_power + garden_power - grid_active_power)|int(0) }}"
           house_power_with_correction: >-
             {% if house_power > 0 %}
               {{ house_power }}
@@ -81,17 +81,6 @@ template:
               {{ 0 }}
             {% endif %}
     sensor:
-      #
-      #  Sensor for total solar power
-      #
-      - name: total_solar_power
-        unique_id: total_solar_power
-        #friendly_name: "Solar Leistung"
-        state_class: measurement
-        device_class: power
-        unit_of_measurement: "W"
-        icon: mdi:home-lightning-bolt
-        state: "{{ solar_power }}"
       #
       #  Sensor for House power
       # - Correction to avoid negative load
@@ -205,6 +194,8 @@ template:
           pv_2_voltage: "{{ states('sensor.inverter_pv_2_voltage')|float(0) }}"
           pv_2_power: "{{ (pv_2_current * pv_2_voltage)|int(0) }}"
           pv_power: "{{ (pv_1_power + pv_2_power)|int(0) }}"
+          garden_power: "{{ states('sensor.garden_power')|int(0) }}"
+          solar_power: "{{ (pv_power + garden_power)|int(0) }}"
     sensor:
       - name: inverter_pv_1_power
         unique_id: inverter_pv_1_power
@@ -232,3 +223,12 @@ template:
         unit_of_measurement: "W"
         icon: mdi:solar-power
         state: "{{ pv_power }}"
+
+      - name: total_solar_power
+        unique_id: total_solar_power
+        #friendly_name: "Solar Leistung"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:home-lightning-bolt
+        state: "{{ solar_power }}"
