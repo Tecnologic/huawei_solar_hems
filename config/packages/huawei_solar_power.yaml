@@ -64,7 +64,7 @@ template:
           t: "{{ now().isoformat() }}"
           inv_in_power: "{{ states('sensor.inverter_input_power')|int(0) }}"
           garden_power: "{{ states('sensor.garden_power')|int(0) }}"
-          solar_power: "{{ (inv_in_power + garden_power) }}"
+          solar_power: "{{ (inv_in_power + garden_power)|int(0) }}"
           inv_active_power: "{{ states('sensor.inverter_active_power')|int(0) }}"
           bat_active_power: "{{ (solar_power - inv_active_power)|int(0) }}"
           bat_charge_power: "{{ max(0, bat_active_power) }}"
@@ -73,7 +73,7 @@ template:
           grid_active_power: "{{ states('sensor.power_meter_active_power')|int(0) }}"
           grid_export_power: "{{ max(0, grid_active_power) }}"
           grid_import_power: "{{ -min(0, grid_active_power) }}"
-          house_power: "{{ solar_power - grid_active_power }}"
+          house_power: "{{ (inv_active_power - grid_active_power)|int(0) }}"
           house_power_with_correction: >-
             {% if house_power > 0 %}
               {{ house_power }}
@@ -174,5 +174,61 @@ template:
         unit_of_measurement: "W"
         icon: mdi:flash
         state: "{{ grid_import_power }}"
-#
-# ########## End: Persistent Template Sensors ##########
+  # ########## Entities ##########
+  #
+  # - sensor.inverter_pv_1_power
+  # - sensor.inverter_pv_2_power
+  # - sensor.inverter_pv_power
+  #
+  # PV Strings Power (without Loss/Correction)
+  #
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.inverter_pv_1_voltage
+          - sensor.inverter_pv_2_voltage
+        not_from:
+          - "unknown"
+          - "unavailable"
+          - "none"
+        not_to:
+          - "unknown"
+          - "unavailable"
+          - "none"
+    action:
+      - variables:
+          t: "{{ now().isoformat() }}"
+          pv_1_current: "{{ states('sensor.inverter_pv_1_current')|float(0) }}"
+          pv_1_voltage: "{{ states('sensor.inverter_pv_1_voltage')|float(0) }}"
+          pv_1_power: "{{ (pv_1_current * pv_1_voltage)|int(0) }}"
+          pv_2_current: "{{ states('sensor.inverter_pv_2_current')|float(0) }}"
+          pv_2_voltage: "{{ states('sensor.inverter_pv_2_voltage')|float(0) }}"
+          pv_2_power: "{{ (pv_2_current * pv_2_voltage)|int(0) }}"
+          pv_power: "{{ (pv_1_power + pv_2_power)|int(0) }}"
+    sensor:
+      - name: inverter_pv_1_power
+        unique_id: inverter_pv_1_power
+        #friendly_name: 'Inverter PV 1 Power'
+        state_class: "measurement"
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: "{{ pv_1_power }}"
+
+      - name: inverter_pv_2_power
+        unique_id: inverter_pv_2_power
+        #friendly_name: "Inverter PV 2 Power"
+        state_class: "measurement"
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: "{{ pv_2_power }}"
+
+      - name: inverter_pv_power
+        unique_id: inverter_pv_power
+        #friendly_name: "Inverter PV Sum Power"
+        state_class: "measurement"
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:solar-power
+        state: "{{ pv_power }}"
