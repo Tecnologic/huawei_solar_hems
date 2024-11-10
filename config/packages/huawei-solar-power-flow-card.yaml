@@ -67,15 +67,17 @@ template:
             {% from '032-hems.jinja' import globalVariables %}
             {{ globalVariables()|from_json }}
           inv_in_power: "{{ states(var.inv_in_power)|int(0) }}"
+          garden_power: "{{ states('sensor.garden_power')|int(0)}}"   # grid tied garden powerplant.
+          in_power: "{{ (inv_in_power + garden_power)|int(0) }}"
           inv_active_power: "{{ states(var.inv_active_power)|int(0) }}"
           inv_in_grid_power: "{{ -min(0, inv_active_power) }}"
-          bat_active_power: "{{ (inv_in_power - inv_active_power)|int(0) }}"
+          bat_active_power: "{{ (in_power - inv_active_power)|int(0) }}"
           bat_in_power: "{{ max(0, bat_active_power) }}"
           bat_out_power: "{{ -min(0, bat_active_power) }}"
           grid_active_power: "{{ states(var.grid_active_power)|int(0) }}"
           grid_out_power: "{{ max(0, grid_active_power) }}"
           grid_in_power: "{{ -min(0, grid_active_power) }}"
-          house_power: "{{ inv_active_power - grid_active_power }}"
+          house_power: "{{ inv_active_power + garden_power - grid_active_power }}"
           house_power_with_correction: >-
             {% if house_power > 0 %}
               {{ house_power }}

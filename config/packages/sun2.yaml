@@ -19,13 +19,13 @@
 #
 # ########## Entities ##########
 #
-# - sensor.hems_sun_pv_excess_start
-# - sensor.hems_sun_pv_excess_end
-# - sensor.hems_sun_prediction_end
+# - sensor.zu_hause_sun_pv_excess_start
+# - sensor.zu_hause_sun_pv_excess_end
+# - sensor.zu_hause_sun_prediction_end
 #
-# - input_number.hems_sun_pv_excess_start_rising_offset
-# - input_number.hems_sun_pv_excess_end_setting_offset
-# - input_number.hems_sun_prediction_end_setting_offset
+# - input_number.zu_hause_sun_pv_excess_start_rising_offset
+# - input_number.zu_hause_sun_pv_excess_end_setting_offset
+# - input_number.zu_hause_sun_prediction_end_setting_offset
 #
 sun2:
   - unique_id: hems

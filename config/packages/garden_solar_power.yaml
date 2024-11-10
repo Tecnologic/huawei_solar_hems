@@ -1,0 +1,104 @@
+# ########## Huawei Solar Integration - Power flow card ##########
+#
+# homeassistant:
+#   min_version: 2024.10.1
+# domain: mqtt
+#
+#
+# Copyright (c) 2024 Alexander Evers
+# All rights reserved.
+#
+#
+# ########## Entities ##########
+#
+# - sensor.garden.module.0
+# - sensor.garden.module.1
+# - sensor.garden.energy
+# - sensor.garden.inverter.temp
+#
+# ########## Start: MQTT Sensors ##########
+#
+mqtt:
+  sensor:
+    - state_topic: "ecu/in"
+      name: "garden.module.0"
+      unique_id: "garden_modul_0"
+      object_id: "garden.module.0"
+      #friendly_name: "Garten Modul 0 Leistung"
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ (value_json.p0)|int(0) }}"
+
+    - state_topic: "ecu/in"
+      name: "garden.module.1"
+      unique_id: "garden_module_1"
+      object_id: "garden.module.1"
+      #friendly_name: "Garten Modul 1 Leistung"
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ (value_json.p1)|int(0) }}"
+
+    - state_topic: "ecu/in"
+      name: "garden.energy"
+      object_id: "garden.energy"
+      unique_id: "garden_energy"
+      #friendly_name: "Garten Ertrag"
+      unit_of_measurement: "Wh"
+      device_class: energy
+      state_class: total_increasing
+      value_template: "{{ (value_json.energy)|float(0) }}"
+
+    - state_topic: "ecu/in"
+      name: "garden.inverter.temp"
+      object_id: "garden.inverter.temp"
+      unique_id: "garden_inverter_temp"
+      #friendly_name: "Garten Haus Temperatur"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      state_class: measurement
+      value_template: "{{ (value_json.temp)|float(0) }}"
+      # mqtt json template {"inv_serial":"408000190203","temp":"23.4","p0":"0.8","p1":"0.6","energy":"1827.8"}
+#
+# ########## End: Persistent MQTT Sensors ##########
+
+# ########## Start: Persistent Template Sensors ##########
+#
+template:
+  #
+  #
+  # solar               : sensor.garden_power
+  #
+  #
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.garden_module_0
+          - sensor.garden_module_1
+        not_from:
+          - "unknown"
+          - "unavailable"
+          - "none"
+        not_to:
+          - "unknown"
+          - "unavailable"
+          - "none"
+    action:
+      - variables:
+          t: "{{ now().isoformat() }}"
+          module0: "{{ states('sensor.garden_module_0')|float(0) }}"
+          module1: "{{ states('sensor.garden_module_1')|float(0) }}"
+          power: "{{ (module0 + module1)|int(0) }}"
+    sensor:
+      #
+      #  Sensor for garden solar power
+      #
+      - name: garden_power
+        unique_id: garden_power
+        #friendly_name: "Solar Leistung"
+        state_class: measurement
+        device_class: power
+        unit_of_measurement: "W"
+        icon: mdi:home-lightning-bolt
+        state: "{{ power }}"
+#
+# ########## End: Persistent Template Sensors ##########

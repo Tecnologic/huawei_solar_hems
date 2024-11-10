@@ -18,27 +18,27 @@
             'pv_2_voltage': 'sensor.inverter_pv_2_voltage',
 
             'inv_rated_power': 'sensor.inverter_rated_power',
-            'inv_max_active_power': 'sensor.inverter_power',
+            'inv_max_active_power': 'sensor.inverter_rated_power',
 
             'inv_in_power': 'sensor.inverter_input_power',
             'inv_active_power': 'sensor.inverter_active_power',
             'grid_active_power': 'sensor.power_meter_active_power',
             'house_power': 'sensor.house_consumption_power',
 
-            'bat_rated_capacity': 'sensor.batteries_rated_capacity',
-            'bat_rated_charge_power': 'sensor.batteries_maximum_charge_power',
-            'bat_rated_discharge_power': 'sensor.batteries_maximum_discharge_power',
+            'bat_rated_capacity': 'input_number.battery_rated_capacity',
+            'bat_rated_charge_power': 'sensor.battery_1_rated_charge_power',
+            'bat_rated_discharge_power': 'sensor.battery_1_rated_discharge_power',
 
             'bat_in_power_mean_30min': 'sensor.batteries_charge_power_mean_30min',
             'bat_out_power_mean_24h': 'sensor.batteries_discharge_power_mean_24h',
 
-            'bat_soc': 'sensor.batteries_state_of_capacity',
+            'bat_soc': 'sensor.battery_state_of_capacity',
 
             'pv_yield_total': 'sensor.inverter_total_dc_input_energy',
             'inv_in_grid_total': 'sensor.batteries_charge_from_grid_energy_total',
             'inv_out_total': 'sensor.inverter_total_yield',
-            'bat_in_total': 'sensor.batteries_total_charge',
-            'bat_out_total': 'sensor.batteries_total_discharge',
+            'bat_in_total': 'sensor.battery_total_charge',
+            'bat_out_total': 'sensor.battery_total_discharge',
             'grid_out_total': 'sensor.power_meter_exported',
             'grid_in_total': 'sensor.power_meter_consumption',
 
@@ -77,17 +77,17 @@
             'self_sufficiency_total': 'sensor.house_self_sufficiency_total',
             'self_sufficiency_daily': 'sensor.house_self_sufficiency_daily',
 
-            'rising_time': 'sensor.hems_sun_rising',
-            'setting_time': 'sensor.hems_sun_setting',
-            'daylight_duration': 'sensor.hems_sun_daylight',
-            'solar_noon_time': 'sensor.hems_sun_solar_noon',
-            'pv_excess_start_time': 'sensor.hems_sun_pv_excess_start',
-            'pv_excess_end_time': 'sensor.hems_sun_pv_excess_end',
-            'prediction_end_time': 'sensor.hems_sun_prediction_end',
+            'rising_time': 'sensor.zu_hause_sun_rising',
+            'setting_time': 'sensor.zu_hause_sun_setting',
+            'daylight_duration': 'sensor.zu_hause_sun_daylight',
+            'solar_noon_time': 'sensor.zu_hause_sun_solar_noon',
+            'pv_excess_start_time': 'sensor.zu_hause_sun_pv_excess_start',
+            'pv_excess_end_time': 'sensor.zu_hause_sun_pv_excess_end',
+            'prediction_end_time': 'sensor.zu_hause_sun_prediction_end',
 
-            'pv_excess_start_rising_offset': 'input_number.hems_sun_pv_excess_start_rising_offset',
-            'pv_excess_end_setting_offset': 'input_number.hems_sun_pv_excess_end_setting_offset',
-            'prediction_end_setting_offset': 'input_number.hems_sun_prediction_end_setting_offset',
+            'pv_excess_start_rising_offset': 'input_number.zu_hause_sun_pv_excess_start_rising_offset',
+            'pv_excess_end_setting_offset': 'input_number.zu_hause_sun_pv_excess_end_setting_offset',
+            'prediction_end_setting_offset': 'input_number.zu_hause_sun_prediction_end_setting_offset',
 
             'epexspot_price': 'sensor.epex_spot_data_price',
             'epexspot_price_1': 'sensor.epex_spot_data_price_3',
@@ -107,13 +107,10 @@
             'epexspot_data_update': 'binary_sensor.epex_spot_data_update',
 
             'solcast_forecast_today': 'sensor.solcast_pv_forecast_prognose_heute',
-            'solcast_forecast_tomorrow': 'sensor.solcast_pv_forecast_prognose_fur_morgen',
+            'solcast_forecast_tomorrow': 'sensor.solcast_pv_forecast_prognose_morgen',
 
-            'solcast_last_poll_time': 'sensor.solcast_pv_forecast_zuletzt_abgefragte_api',
-            'solcast_api_request_limit': 'sensor.solcast_pv_forecast_api_limit',
-            'solcast_api_request_used': 'sensor.solcast_pv_forecast_verwendete_api',
-
-            'sg_ready_hp_lock': 'switch.406_wp_sg_ready_evu',
-            'sg_ready_pv_excess': 'switch.406_wp_sg_ready_pv_ma'
+            'solcast_last_poll_time': 'sensor.solcast_pv_forecast_zeitpunkt_letzter_api_abruf',
+            'solcast_api_request_limit': 'sensor.solcast_pv_forecast_max_api_abrufe',
+            'solcast_api_request_used': 'sensor.solcast_pv_forecast_verwendete_api_abrufe',
         }|to_json -}}
 {%- endmacro %}

@@ -256,19 +256,19 @@ sequence:
   - alias: Set initial value of pv_excess_start_rising_offset
     action: input_number.set_value
     target:
-      entity_id: input_number.hems_sun_pv_excess_start_rising_offset
+      entity_id: input_number.zu_hause_sun_pv_excess_start_rising_offset
     data:
       value: !input pv_excess_start_rising_offset
   - alias: Set initial value of pv_excess_end_setting_offset
     action: input_number.set_value
     target:
-      entity_id: input_number.hems_sun_pv_excess_end_setting_offset
+      entity_id: input_number.zu_hause_sun_pv_excess_end_setting_offset
     data:
       value: !input pv_excess_end_setting_offset
   - alias: Set initial value of prediction_end_setting_offset
     action: input_number.set_value
     target:
-      entity_id: input_number.hems_sun_prediction_end_setting_offset
+      entity_id: input_number.zu_hause_sun_prediction_end_setting_offset
     data:
       value: !input prediction_end_setting_offset
   - alias: Set initial value of epexspot_quantile_setpoint_low
