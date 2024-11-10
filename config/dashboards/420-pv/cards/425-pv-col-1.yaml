@@ -21,7 +21,7 @@ state-label-style-flush-left-defaults: &state-label-style-flush-left
   transform: translate(0,0)
 
 type: picture-elements
-title: Huawei Sun2000-6KTL-M1
+title: Huawei Sun2000-4-6KTL-L1
 image: /local/images/huawei-solar/sun2000-luna2000.png
 elements:
   - entity: switch.inverter_inverter_on_off
@@ -36,13 +36,6 @@ elements:
       <<: *state-label-style-flush-left
       left: 1%
       top: 2%
-    type: state-label
-  - entity: sensor.power_meter_meter_status
-    prefix: "Status: "
-    style:
-      <<: *state-label-style-flush-left
-      left: 1%
-      top: 4%
     type: state-label
   - entity: sensor.inverter_alarms
     prefix: "Alarms: "
@@ -219,7 +212,7 @@ elements:
             from: -7800
             to: 0
             hide: false
-  - entity: sensor.batteries_total_discharge
+  - entity: sensor.battery_total_discharge
     prefix: "T: "
     style:
       left: 80.5%
@@ -231,13 +224,13 @@ elements:
       left: 93%
       top: 48%
     type: state-label
-  - entity: sensor.batteries_day_discharge
+  - entity: sensor.battery_day_discharge
     prefix: "D: "
     style:
       left: 93%
       top: 50%
     type: state-label
-  - entity: sensor.batteries_status
+  - entity: sensor.battery_status
     prefix: "Status: "
     style:
       left: 92%
@@ -249,7 +242,7 @@ elements:
       left: 92%
       top: 56.5%
     entities:
-      - entity: sensor.batteries_state_of_capacity
+      - entity: sensor.battery_state_of_capacity
         name: Capacity
         min: "0"
         max: "100"
@@ -268,13 +261,13 @@ elements:
       left: 94%
       top: 62%
     type: state-label
-  - entity: sensor.batteries_total_charge
+  - entity: sensor.battery_total_charge
     prefix: "T: "
     style:
       left: 80.5%
       top: 65%
     type: state-label
-  - entity: sensor.batteries_day_charge
+  - entity: sensor.battery_day_charge
     prefix: "D: "
     style:
       left: 93%
@@ -292,7 +285,7 @@ elements:
       left: 52%
       top: 54.3%
     entities:
-      - entity: sensor.batteries_active_power
+      - entity: sensor.battery_active_power
         name: In
         min: "0"
         max: "7575"
@@ -305,7 +298,7 @@ elements:
             from: -7575
             to: -1
             hide: true
-      - entity: sensor.batteries_active_power
+      - entity: sensor.battery_active_power
         name: Out
         min: "0"
         max: "-7575"

@@ -1,5 +1,5 @@
 type: custom:hourly-weather
-entity: weather.raesfeld_ka
+entity: weather.sprenge
 num_segments: 120
 offset: 0
 label_spacing: 4

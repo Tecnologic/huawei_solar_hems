@@ -2,7 +2,7 @@ type: picture-elements
 title: Huawei Sun2000-6KTL-M1 (High Current Version)
 image: /local/images/huawei-solar/sun2000-luna2000-power-energy-flows.png
 elements:
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.battery_state_of_capacity
     style:
       left: 17%
       top: 9%
@@ -12,7 +12,7 @@ elements:
       left: 55.3%
       top: 9%
     type: state-label
-  - entity: sensor.batteries_total_charge
+  - entity: sensor.battery_total_charge
     style:
       left: 15.7%
       top: 20.8%
@@ -76,7 +76,7 @@ elements:
       left: 14.4%
       top: 35.8%
     type: state-label
-  - entity: sensor.batteries_active_power
+  - entity: sensor.battery_active_power
     style:
       left: 39%
       top: 36.2%

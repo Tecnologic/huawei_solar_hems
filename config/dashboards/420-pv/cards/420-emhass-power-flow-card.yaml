@@ -20,22 +20,11 @@ entities:
     invert_state: false
     state_of_charge: sensor.soc_batt_forecast
     color_circle: true
-  individual:
-    - entity: sensor.washing_power
-      icon: mdi:washing-machine
-      name: Washing
-      display_zero: true
-#      color: "#00CC44"
-    - entity: sensor.p_deferrable0
-      icon: mdi:heat-pump-outline
-      name: Heating
-      display_zero: true
-#      color: "#00CC44"
   grid:
     entity: sensor.p_grid_forecast
     invert_state: false
   fossil_fuel_percentage:
-    entity: sensor.co2_signal_grid_fossil_fuel_percentage
+    entity: sensor.co2_signal_anteil_fossiler_brennstoffe_im_netz
     icon: mdi:pine-tree
     color_icon: true
     display_zero: true

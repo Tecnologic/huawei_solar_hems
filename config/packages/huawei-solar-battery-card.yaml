@@ -59,7 +59,7 @@ template:
   - trigger:
       - platform: state
         entity_id:
-          - sensor.batteries_state_of_capacity
+          - sensor.battery_state_of_capacity
         not_from:
           - "unknown"
           - "unavailable"
@@ -75,13 +75,13 @@ template:
           var: >-
             {% from '032-hems.jinja' import globalVariables %}
             {{ globalVariables()|from_json }}
-          bat_in_power_mean_30min: "{{ states(var.bat_in_power_mean_30min)|float(0) / 1000 }}"
-          bat_out_power_mean_24h: "{{ states(var.bat_out_power_mean_24h)|float(0) / 1000 }}"
+          bat_in_power_mean_30min: "{{ states(var.bat_in_power_mean_30min)|float(0) / 1000.0 }}"
+          bat_out_power_mean_24h: "{{ states(var.bat_out_power_mean_24h)|float(0) / 1000.0 }}"
           bat_soc: "{{ states(var.bat_soc)|float(0) }}"
-          bat_rated_capacity: "{{ states(var.bat_rated_capacity)|float(0) / 1000 }}"
-          bat_soe: "{{ bat_rated_capacity * bat_soc / 100 }}"
+          bat_rated_capacity: "{{ states(var.bat_rated_capacity)|float(0) / 1000.0 }}"
+          bat_soe: "{{ bat_rated_capacity * bat_soc / 100.0 }}"
           bat_max_eoc: "{{ bat_rated_capacity * 1.15 }}"
-          bat_eoc: "{{ bat_max_eoc * (1 - bat_soc / 100) }}"
+          bat_eoc: "{{ bat_max_eoc * (1 - bat_soc / 100.0) }}"
           bat_eoc_time: >-
             {% if bat_soc < 100 and bat_in_power_mean_30min > 0 %}
               {% set decimal_hours = bat_eoc / bat_in_power_mean_30min %}

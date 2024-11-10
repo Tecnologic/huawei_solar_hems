@@ -25,21 +25,7 @@ brush:
     # Any ApexCharts settings you want to apply to the brush
     # Same as the standard apex_config
 series:
-  - entity: sensor.heizung_domestic_hot_water_0_tank_temperature
-    name: WW
-    float_precision: 1
-    type: line
-    color: "blue"
-    opacity: 0.6
-    stroke_width: 0.8
-    yaxis_id: capacity
-    unit: "°C"
-    show:
-      in_header: false
-    group_by:
-      func: avg
-      duration: 5m
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.battery_state_of_capacity
     name: Bat-SoC
     float_precision: 0
     type: line

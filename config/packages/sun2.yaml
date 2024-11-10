@@ -28,7 +28,7 @@
 # - input_number.zu_hause_sun_prediction_end_setting_offset
 #
 sun2:
-  - unique_id: hems
+  - unique_id: zu_hause
     observer_elevation: 10
 #    sensors:
 #      - unique_id: pv_excess_start_at_elevation
@@ -79,8 +79,8 @@ template:
       #
       #
       #
-      - name: "hems_sun_pv_excess_start"
-        unique_id: hems_sun_pv_excess_start
+      - name: "zu_hause_sun_pv_excess_start"
+        unique_id: zu_hause_sun_pv_excess_start
         device_class: timestamp
         icon: mdi:weather-sunset-up
         state: >-
@@ -101,8 +101,8 @@ template:
       #
       #
       #
-      - name: "hems_sun_pv_excess_end"
-        unique_id: hems_sun_pv_excess_end
+      - name: "zu_hause_sun_pv_excess_end"
+        unique_id: zu_hause_sun_pv_excess_end
         device_class: timestamp
         icon: mdi:weather-sunset-down
         state: >-
@@ -123,8 +123,8 @@ template:
       #
       #
       #
-      - name: "hems_sun_prediction_end"
-        unique_id: hems_sun_prediction_end
+      - name: "zu_hause_sun_prediction_end"
+        unique_id: zu_hause_sun_prediction_end
         device_class: timestamp
         icon: mdi:weather-sunset-down
         state: >-
@@ -152,8 +152,8 @@ input_number:
   #
   # Default: 15.0
   #
-  hems_sun_pv_excess_start_rising_offset:
-    name: hems_sun_pv_excess_start_rising_offset
+  zu_hause_sun_pv_excess_start_rising_offset:
+    name: zu_hause_sun_pv_excess_start_rising_offset
     min: 0
     max: 100
     step: 1
@@ -163,8 +163,8 @@ input_number:
   #
   # Default: 15.0
   #
-  hems_sun_pv_excess_end_setting_offset:
-    name: hems_sun_pv_excess_end_setting_offset
+  zu_hause_sun_pv_excess_end_setting_offset:
+    name: zu_hause_sun_pv_excess_end_setting_offset
     min: 0
     max: 100
     step: 1
@@ -174,8 +174,8 @@ input_number:
   #
   # Default: 20.0
   #
-  hems_sun_prediction_end_setting_offset:
-    name: hems_sun_prediction_end_setting_offset
+  zu_hause_sun_prediction_end_setting_offset:
+    name: zu_hause_sun_prediction_end_setting_offset
     min: 0
     max: 100
     step: 1

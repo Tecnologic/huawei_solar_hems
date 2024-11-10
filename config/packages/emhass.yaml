@@ -527,7 +527,7 @@ rest_command:
           )| tojson 
         }},
         "prediction_horizon": {{prediction_horizon}},
-        "soc_init": {{states('sensor.batteries_state_of_capacity')|float(0)/100}},
+        "soc_init": {{states('sensor.battery_state_of_capacity')|float(0)/100}},
         "soc_final": 1.0,
         "def_total_hours": [0,0],
         "alpha": 1,
@@ -553,7 +553,7 @@ rest_command:
           )|tojson 
         }},
         "prediction_horizon": {{prediction_horizon}},
-        "soc_init": {{states('sensor.batteries_state_of_capacity')|float(0)/100}},
+        "soc_init": {{states('sensor.battery_state_of_capacity')|float(0)/100}},
         "soc_final": 1.0,
         "def_total_hours": [0,0],
         "alpha": 1,

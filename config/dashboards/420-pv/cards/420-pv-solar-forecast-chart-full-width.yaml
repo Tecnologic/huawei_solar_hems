@@ -14,23 +14,8 @@ apex_config:
       - 4
 graph_span: 6d
 series:
-  # myVAILLANT Integration
-  - entity: sensor.heizung_domestic_hot_water_0_tank_temperature
-    name: HWC
-    float_precision: 1
-    type: line
-    color: "blue"
-    opacity: 0.6
-    stroke_width: 0.8
-    yaxis_id: capacity
-    unit: "°C"
-    show:
-      in_header: false
-    group_by:
-      func: avg
-      duration: 5m
   # HUAWEI Solar Integration
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.battery_state_of_capacity
     name: Bat-SoC
     float_precision: 0
     type: line
@@ -57,7 +42,7 @@ series:
     yaxis_id: capacity
     unit: "%"
     data_generator: |
-      return entity.attributes.battery_scheduled_soc.map((entry) => {
+      return entity.attributes.batteries_scheduled_soc.map((entry) => {
         return [new Date(entry.date).getTime(), entry.soc_batt_forecast];
       });
   # Template Sensor
@@ -132,7 +117,7 @@ series:
         return [new Date(entry.period_start), entry.pv_estimate];
       });
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_prognose_fur_morgen
+  - entity: sensor.solcast_pv_forecast_prognose_morgen
     name: Solar FCST (D2)
     show:
       legend_value: false
@@ -142,7 +127,7 @@ series:
         return [new Date(entry.period_start), entry.pv_estimate];
       });
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_vorhersage_tag_3
+  - entity: sensor.solcast_pv_forecast_prognose_tag_3
     name: Solar FCST (D3)
     show:
       legend_value: false
@@ -152,7 +137,7 @@ series:
         return [new Date(entry.period_start), entry.pv_estimate];
       });
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_vorhersage_tag_4
+  - entity: sensor.solcast_pv_forecast_prognose_tag_4
     name: Solar FCST (D4)
     show:
       legend_value: false
@@ -162,7 +147,7 @@ series:
         return [new Date(entry.period_start), entry.pv_estimate];
       });
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_prognosetag_5
+  - entity: sensor.solcast_pv_forecast_prognose_tag_5
     name: Solar FCST (D5)
     show:
       legend_value: false
@@ -186,35 +171,35 @@ series:
     show:
       in_chart: false
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_prognose_fur_morgen
+  - entity: sensor.solcast_pv_forecast_prognose_morgen
     yaxis_id: header_only
     name: Solar FCST (D2)
     unit: kWh
     show:
       in_chart: false
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_vorhersage_tag_3
+  - entity: sensor.solcast_pv_forecast_prognose_tag_3
     yaxis_id: header_only
     name: Solar FCST (D3)
     unit: kWh
     show:
       in_chart: false
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_vorhersage_tag_4
+  - entity: sensor.solcast_pv_forecast_prognose_tag_4
     yaxis_id: header_only
     name: Solar FCST (D4)
     unit: kWh
     show:
       in_chart: false
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_prognosetag_5
+  - entity: sensor.solcast_pv_forecast_prognose_tag_5
     yaxis_id: header_only
     name: Solar FCST (D5)
     unit: kWh
     show:
       in_chart: false
   # Solcast PV Forecast Integration
-  - entity: sensor.solcast_pv_forecast_zuletzt_abgefragte_api
+  - entity: sensor.solcast_pv_forecast_zeitpunkt_letzter_api_abruf
     yaxis_id: header_only
     name: Solar FCST (Last Update)
     float_precision: 0

@@ -16,26 +16,15 @@ entities:
     entity: sensor.inverter_input_power
   battery:
     name: Batteries
-    entity: sensor.batteries_active_power
+    entity: sensor.battery_active_power
     invert_state: true
-    state_of_charge: sensor.batteries_state_of_capacity
+    state_of_charge: sensor.battery_state_of_capacity
     color_circle: true
-  individual:
-    - entity: sensor.washing_power
-      icon: mdi:washing-machine
-      name: Washing
-      display_zero: true
-    #      color: "#00CC44"
-    - entity: sensor.heating_power
-      icon: mdi:heat-pump-outline
-      name: Heating
-      display_zero: true
-  #      color: "#00CC44"
   grid:
     entity: sensor.power_meter_active_power
     invert_state: true
   fossil_fuel_percentage:
-    entity: sensor.co2_signal_grid_fossil_fuel_percentage
+    entity: sensor.co2_signal_anteil_fossiler_brennstoffe_im_netz
     icon: mdi:pine-tree
     color_icon: true
     display_zero: true

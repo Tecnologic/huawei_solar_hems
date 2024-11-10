@@ -30,7 +30,7 @@ elements:
       left: 35%
       top: 42%
     type: state-label
-  - entity: sensor.batteries_active_power
+  - entity: sensor.battery_active_power
     style:
       left: 35%
       top: 47%
@@ -66,7 +66,7 @@ elements:
       left: 25%
       top: 63%
     type: state-label
-  - entity: sensor.batteries_total_charge
+  - entity: sensor.battery_total_charge
     prefix: "T: "
     style:
       left: 34%
@@ -89,7 +89,7 @@ elements:
       left: 34%
       top: 72%
     type: state-label
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.battery_state_of_capacity
     style:
       left: 16%
       top: 75%

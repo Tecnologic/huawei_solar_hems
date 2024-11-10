@@ -7,7 +7,7 @@ apex_config:
     height: 250px
 graph_span: 3d
 series:
-  - entity: sensor.batteries_state_of_capacity
+  - entity: sensor.battery_state_of_capacity
     name: Bat-SoC
     float_precision: 0
     type: line
@@ -46,7 +46,7 @@ series:
       return entity.attributes.detailedForecast.map((entry) => {
         return [new Date(entry.period_start), entry.pv_estimate];
       });
-  - entity: sensor.solcast_pv_forecast_prognose_fur_morgen
+  - entity: sensor.solcast_pv_forecast_prognose_morgen
     name: Forecast D2
     extend_to: false
     show:

@@ -24,7 +24,7 @@
 # ########## Entities ##########
 #
 # - sensor.house_consumption_power
-# - sensor.batteries_active_power
+# - sensor.battery_active_power
 # - sensor.batteries_charge_power
 # - sensor.batteries_discharge_power
 # - sensor.batteries_charge_from_grid_power
