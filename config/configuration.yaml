@@ -3,15 +3,14 @@ default_config:
 
 homeassistant:
   packages:
+    emhass: !include packages/emhass.yaml
+    epexspot: !include packages/epexspot.yaml
     huawei_solar_power: !include packages/huawei_solar_power.yaml
     garden_solar_power: !include packages/garden_solar_power.yaml
 
 automation: !include automations.yaml
 lovelace: !include ui-lovelace.yaml
 script: !include scripts.yaml
-
-frontend:
-  themes: !include_dir_merge_named themes
 
 # Text to speech
 tts:
