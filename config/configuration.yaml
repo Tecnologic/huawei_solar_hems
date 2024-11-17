@@ -9,7 +9,6 @@ homeassistant:
     garden_solar_power: !include packages/garden_solar_power.yaml
 
 automation: !include automations.yaml
-lovelace: !include ui-lovelace.yaml
 script: !include scripts.yaml
 
 # Text to speech
@@ -24,4 +23,3 @@ http:
 
 recorder:
   purge_keep_days: 14
-  commit_interval: 20

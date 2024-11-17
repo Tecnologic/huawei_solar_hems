@@ -34,49 +34,6 @@
 # - emhass_ml_load_forecast_model_predict
 # - emhass_ml_load_forecast_model_tune
 #
-# ########## Start: Automation ##########
-#
-automation emhass:
-  #
-  # EMHASS - naive mpc optimization - upto 48 hours forecast
-  #
-  # Start rest command: emhass_naive_mpc_optim_forecast
-  #
-  - id: "emhass_naive_mpc_optim_forecast"
-    alias: "EMHASS - naive mpc optim forecast"
-    description: "EMHASS - naive mpc optimization - upto 48 hours forecast."
-    triggers:
-      - trigger: time_pattern
-        minutes: /1
-    actions:
-      - metadata: {}
-        data: {}
-        enabled: true
-        continue_on_error: false
-        response_variable: rest_response
-        action: rest_command.emhass_naive_mpc_optim_forecast
-      - if:
-          - condition: template
-            value_template: >-
-              {{ rest_response['status'] < 400 }}
-        then:
-          - data:
-              prefix: all
-            enabled: true
-            continue_on_error: true
-            response_variable: rest_response
-            action: rest_command.emhass_publish_data
-        else:
-          - metadata: {}
-            data:
-              level: warning
-              message: "{{ rest_response['content'] }}"
-              logger: EMHASS.MINUTE
-            action: system_log.write
-    mode: single
-#
-# ########## End: Automation ##########
-#
 # ########## Start: Template ##########
 #
 template:
@@ -96,8 +53,8 @@ template:
             {{ priceStatistics(net_price, 'start_time', 'price_ct_per_kwh', ts_start_time)|from_json }}
           solcast: >-
             {% from 'emhass.jinja' import convertDate %}
-            {%- set today = convertDate(state_attr(var.solcast_forecast_today, 'detailedForecast'), 'period_start')|from_json %}
-            {%- set tomorrow = convertDate(state_attr(var.solcast_forecast_tomorrow, 'detailedForecast'), 'period_start')|from_json %}
+            {%- set today = convertDate(state_attr('sensor.solcast_pv_forecast_prognose_heute', 'detailedForecast'), 'period_start')|from_json %}
+            {%- set tomorrow = convertDate(state_attr('sensor.solcast_pv_forecast_prognose_morgen', 'detailedForecast'), 'period_start')|from_json %}
             {{ today + tomorrow }}
     sensor:
       #

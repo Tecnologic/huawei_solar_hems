@@ -1,32 +1,88 @@
-- id: '1691838317764'
-  alias: 'Terrassenlicht Einschalten '
-  description: ''
+- id: "1691838317764"
+  alias: "Terrassenlicht Einschalten "
+  description: ""
   trigger:
-  - type: light
-    platform: device
-    device_id: 1887e146781f6b7f3b887dac226ac04a
-    entity_id: 28a4327866754c314511c3ba29f2a2d2
-    domain: binary_sensor
+    - type: light
+      platform: device
+      device_id: 1887e146781f6b7f3b887dac226ac04a
+      entity_id: 28a4327866754c314511c3ba29f2a2d2
+      domain: binary_sensor
   condition: []
   action:
-  - type: turn_on
-    device_id: debfaa37870d6405eb0bf56a5983d634
-    entity_id: f69549083b2bbd020ffb0f21a7ccb808
-    domain: light
+    - type: turn_on
+      device_id: debfaa37870d6405eb0bf56a5983d634
+      entity_id: f69549083b2bbd020ffb0f21a7ccb808
+      domain: light
   mode: single
-- id: '1691840682618'
-  alias: 'Terrassenlicht Ausschalten '
-  description: ''
+- id: "1691840682618"
+  alias: "Terrassenlicht Ausschalten "
+  description: ""
   trigger:
-  - type: no_light
-    platform: device
-    device_id: 1887e146781f6b7f3b887dac226ac04a
-    entity_id: 28a4327866754c314511c3ba29f2a2d2
-    domain: binary_sensor
+    - type: no_light
+      platform: device
+      device_id: 1887e146781f6b7f3b887dac226ac04a
+      entity_id: 28a4327866754c314511c3ba29f2a2d2
+      domain: binary_sensor
   condition: []
   action:
-  - type: turn_off
-    device_id: debfaa37870d6405eb0bf56a5983d634
-    entity_id: f69549083b2bbd020ffb0f21a7ccb808
-    domain: light
+    - type: turn_off
+      device_id: debfaa37870d6405eb0bf56a5983d634
+      entity_id: f69549083b2bbd020ffb0f21a7ccb808
+      domain: light
+  mode: single
+  
+- id: "1731622756710"
+  alias: EPEX Spot - Fetch data
+  description: "EPEX Spot: Fetch data from all services or a specific service."
+  triggers:
+    - trigger: time_pattern
+      minutes: /3
+  conditions:
+    - condition: template
+      value_template:
+        "{{ now() >= next_poll_time|as_datetime|as_local and state ==
+        'off' }}"
+  actions:
+    - delay:
+        seconds: "{{ range(7, 67)|random|int }}"
+    - data: {}
+      action: epex_spot.fetch_data
+  mode: single
+  variables:
+    state: "{{ states('binary_sensor.epex_spot_data_update') }}"
+    next_poll_time:
+      "{{ state_attr('binary_sensor.epex_spot_data_update', 'next_poll_time')
+      }}"
+
+- id: "1731624405515"
+  alias: EMHASS - naive mpc optim forecast
+  description: EMHASS - naive mpc optimization - upto 48 hours forecast.
+  triggers:
+    - trigger: time_pattern
+      minutes: /3
+  conditions: []
+  actions:
+    - metadata: {}
+      data: {}
+      enabled: true
+      continue_on_error: false
+      response_variable: rest_response
+      action: rest_command.emhass_naive_mpc_optim_forecast
+    - if:
+        - condition: template
+          value_template: "{{ rest_response['status'] < 400 }}"
+      then:
+        - data:
+            prefix: all
+          enabled: true
+          continue_on_error: true
+          response_variable: rest_response
+          action: rest_command.emhass_publish_data
+      else:
+        - metadata: {}
+          data:
+            level: warning
+            message: "{{ rest_response['content'] }}"
+            logger: EMHASS.MINUTE
+          action: system_log.write
   mode: single

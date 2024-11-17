@@ -24,26 +24,10 @@
 # ########## Entities ##########
 #
 # - sensor.house_consumption_power
-# - sensor.batteries_active_power
-# - sensor.batteries_charge_power
-# - sensor.batteries_discharge_power
-# - sensor.batteries_charge_from_grid_power
-# - sensor.grid_export_power
-# - sensor.grid_import_power
 #
 # ########## Start: Persistent Template Sensors ##########
 #
 template:
-  #
-  # custom:power-flow-card-plus
-  # https://github.com/flixlix/power-flow-card-plus
-  #
-  # solar               : sensor.inverter_input_power
-  # battery             : sensor.batteries_charge_discharge_power_with_loss
-  # grid                : sensor.power_meter_active_power
-  # house               : sensor.house_consumption_power
-  # load (FusionSolar)  : sensor.house_consumption_power
-  #
   # Real house load
   #
   - trigger:
@@ -51,6 +35,7 @@ template:
         entity_id:
           - sensor.inverter_input_power
           - sensor.inverter_active_power
+          - sensor.garden_power
         not_from:
           - "unknown"
           - "unavailable"
@@ -93,89 +78,21 @@ template:
         unit_of_measurement: "W"
         icon: mdi:home-lightning-bolt
         state: "{{ house_power_with_correction }}"
-      #
-      # Battery Active power
-      #
-      - name: battery_active_power
-        unique_id: battery_active_power
-        #friendly_name: "Battrie Lade/Entladeleistung"
-        state_class: measurement
-        device_class: power
-        unit_of_measurement: "W"
-        icon: mdi:home-battery
-        state: "{{ bat_active_power }}"
-      #
-      # Battery Charge power
-      #
-      - name: battery_charge_power
-        unique_id: battery_charge_power
-        #friendly_name: "Batterie Ladeleistung"
-        state_class: measurement
-        device_class: power
-        unit_of_measurement: "W"
-        icon: mdi:home-battery
-        state: "{{ bat_charge_power }}"
-        attributes:
-          last_updated: "{{ t }}"
-      #
-      # Battery Discharge power
-      #
-      - name: battery_discharge_power
-        unique_id: battery_discharge_power
-        #friendly_name: "Batterie Entladeleistung"
-        state_class: measurement
-        device_class: power
-        unit_of_measurement: "W"
-        icon: mdi:home-battery
-        state: "{{ bat_discharge_power }}"
-        attributes:
-          last_updated: "{{ t }}"
-      #
-      # Sensor that reports the battery charge from grid power
-      #
-      - name: battery_charge_from_grid_power
-        unique_id: battery_charge_from_grid_power
-        #friendly_name: "Batterie Ladeleistung aus dem Netz"
-        state_class: measurement
-        device_class: power
-        unit_of_measurement: "W"
-        icon: mdi:home-battery
-        state: "{{ bat_charge_from_grid_power }}"
-      #
-      # Sensor that reports the grid export power
-      #
-      - name: grid_export_power
-        unique_id: grid_export_power
-        #friendly_name: "Netz Einspeiseleistung"
-        state_class: measurement
-        device_class: power
-        unit_of_measurement: "W"
-        icon: mdi:flash
-        state: "{{ grid_export_power }}"
-      #
-      # Sensor that reports the grid import power
-      #
-      - name: grid_import_power
-        unique_id: grid_import_power
-        #friendly_name: "Netz Bezugsleistung"
-        state_class: measurement
-        device_class: power
-        unit_of_measurement: "W"
-        icon: mdi:flash
-        state: "{{ grid_import_power }}"
+
   # ########## Entities ##########
   #
   # - sensor.inverter_pv_1_power
   # - sensor.inverter_pv_2_power
   # - sensor.inverter_pv_power
   #
-  # PV Strings Power (without Loss/Correction)
   #
   - trigger:
       - platform: state
         entity_id:
           - sensor.inverter_pv_1_voltage
           - sensor.inverter_pv_2_voltage
+          - sensor.inverter_pv_1_current
+          - sensor.inverter_pv_2_current
         not_from:
           - "unknown"
           - "unavailable"

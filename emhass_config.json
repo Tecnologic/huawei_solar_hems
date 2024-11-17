@@ -1,0 +1,109 @@
+{
+  "battery_charge_efficiency": 0.95,
+  "battery_charge_power_max": 3000,
+  "battery_discharge_efficiency": 0.95,
+  "battery_discharge_power_max": 4600,
+  "battery_dynamic_max": 0.9,
+  "battery_dynamic_min": -0.9,
+  "battery_maximum_state_of_charge": 1.0,
+  "battery_minimum_state_of_charge": 0.1,
+  "battery_nominal_energy_capacity": 10000,
+  "battery_target_state_of_charge": 0.7,
+  "compute_curtailment": false,
+  "continual_publish": false,
+  "costfun": "self-consumption",
+  "delta_forecast_daily": 1,
+  "end_timesteps_of_each_deferrable_load": [
+    0
+  ],
+  "historic_days_to_retrieve": 10,
+  "inverter_is_hybrid": true,
+  "load_cost_forecast_method": "hp_hc_periods",
+  "load_forecast_method": "mlforecaster",
+  "load_negative": false,
+  "load_offpeak_hours_cost": 0.37,
+  "load_peak_hour_periods": {
+    "period_hp_1": [
+      {
+        "start": "07:00"
+      },
+      {
+        "end": "09:00"
+      }
+    ],
+    "period_hp_2": [
+      {
+        "start": "17:30"
+      },
+      {
+        "end": "20:00"
+      }
+    ]
+  },
+  "load_peak_hours_cost": 0.45,
+  "logging_level": "INFO",
+  "lp_solver": "default",
+  "lp_solver_path": "empty",
+  "maximum_power_from_grid": 9000,
+  "maximum_power_to_grid": 4600,
+  "method_ts_round": "nearest",
+  "modules_per_string": [
+    24,
+    4
+  ],
+  "nominal_power_of_deferrable_loads": [
+    0
+  ],
+  "number_of_deferrable_loads": 1,
+  "operating_hours_of_each_deferrable_load": [
+    -1
+  ],
+  "optimization_time_step": 30,
+  "photovoltaic_production_sell_price": -0.082,
+  "production_price_forecast_method": "constant",
+  "pv_inverter_model": [
+    "Huawei_Technologies_Co___Ltd___SUN2000_5KTL_USL0__240V_"
+  ],
+  "pv_module_model": [
+    "Walters_&_Wolf_Glass_Co_VL_A200_1_0804_160W_M",
+    "Trina_Solar_TSM_390NE09RC_05"
+  ],
+  "sensor_linear_interp": [
+    "sensor.total_solar_power",
+    "sensor.house_consumption_power"
+  ],
+  "sensor_power_load_no_var_loads": "sensor.house_consumption_power",
+  "sensor_power_photovoltaics": "sensor.total_solar_power",
+  "sensor_replace_zero": [],
+  "set_battery_dynamic": false,
+  "set_deferrable_load_single_constant": [
+    false
+  ],
+  "set_deferrable_startup_penalty": [
+    0
+  ],
+  "set_nocharge_from_grid": false,
+  "set_nodischarge_to_grid": true,
+  "set_total_pv_sell": false,
+  "set_use_battery": true,
+  "set_zero_min": true,
+  "start_timesteps_of_each_deferrable_load": [
+    0
+  ],
+  "strings_per_inverter": [
+    2
+  ],
+  "surface_azimuth": [
+    210
+  ],
+  "surface_tilt": [
+    8,
+    89
+  ],
+  "treat_deferrable_load_as_semi_cont": [
+    true
+  ],
+  "weather_forecast_method": "scrapper",
+  "weight_battery_charge": 0,
+  "weight_battery_discharge": 0
+}

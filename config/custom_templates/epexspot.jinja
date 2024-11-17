@@ -1,11 +1,3 @@
-{%- macro redundantSensor(list) %}
-    {%- set var = namespace(sensor = []) %}
-    {% for i in list if has_value(i) %}
-        {% set var.sensor = var.sensor + [i] %}
-    {% endfor %}
-    {{ var.sensor|first }}
-{%- endmacro %}
-
 {%- macro APIUpdate(tomorrow_data_available, last_update, next_poll_time, data) %}
     {%- set t = now() %}
 
