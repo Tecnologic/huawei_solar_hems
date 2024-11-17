@@ -82,14 +82,14 @@ template:
               {% if record.start_time|as_timestamp >= (t|as_timestamp - 1800) %}
                 {%- set end_time = (record.end_time|as_timestamp - 1800)|timestamp_local %}
 
-                {% from '032-emhass.jinja' import forecastArray %}
+                {% from 'emhass.jinja' import forecastArray %}
                 {%- set var.result = forecastArray(var.result, solcast, record.start_time, end_time, record.price_ct_per_kwh)|from_json %}
               {% endif %}
 
               {# - 2. half hour #}
               {%- set start_time = (record.start_time|as_timestamp + 1800)|timestamp_local %}
 
-              {% from '032-emhass.jinja' import forecastArray %}
+              {% from 'emhass.jinja' import forecastArray %}
               {%- set var.result = forecastArray(var.result, solcast, start_time, record.end_time, record.price_ct_per_kwh)|from_json %}
             {%- endfor %}
             {{ var.result }}
